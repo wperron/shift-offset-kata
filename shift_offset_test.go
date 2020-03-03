@@ -12,6 +12,11 @@ func TestOffset(t *testing.T) {
 		t.Errorf("Invalid offset, expected 0 got %d\n", res)
 	}
 
+	res = IntOffset([]int{2})
+	if res != 0 {
+		t.Errorf("Invalid offset, expected 0 got %d\n", res)
+	}
+
 	res = IntOffset([]int{3, 1})
 	if res != 1 {
 		t.Errorf("Invalid offset, expected 1 got %d\n", res)

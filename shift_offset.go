@@ -6,7 +6,7 @@ import (
 
 func IntOffset(list []int) int {
 	if len(list) <= 1 {
-		return len(list)
+		return 0
 	}
 
 	mid := int(math.Floor(float64(len(list))) / 2) - 1
