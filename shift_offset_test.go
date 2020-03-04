@@ -6,39 +6,23 @@ import (
 
 func TestOffset(t *testing.T) {
 	var res int
-
-	res = IntOffset([]int{})
-	if res != 0 {
-		t.Errorf("Invalid offset, expected 0 got %d\n", res)
+	params := []struct{
+		input []int
+		expected int
+	}{
+		{[]int{}, 0},
+		{[]int{2}, 0},
+		{[]int{3, 1}, 1},
+		{[]int{5, 7, 9, 1, 3, 4}, 3},
+		{[]int{5, 7, 9, 17, 25, 1, 3, 4}, 5},
+		{[]int{5, 7, 9, 17, 25, 31, 1, 3, 4}, 6},
+		{[]int{5, 7, 9, 17, 25, 31, 43, 1, 3, 4}, 7},
 	}
 
-	res = IntOffset([]int{2})
-	if res != 0 {
-		t.Errorf("Invalid offset, expected 0 got %d\n", res)
-	}
-
-	res = IntOffset([]int{3, 1})
-	if res != 1 {
-		t.Errorf("Invalid offset, expected 1 got %d\n", res)
-	}
-
-	res = IntOffset([]int{5, 7, 9, 1, 3, 4})
-	if res != 3 {
-		t.Errorf("Invalid offset, expected 3 got %d\n", res)
-	}
-
-	res = IntOffset([]int{5, 7, 9, 17, 25, 1, 3, 4})
-	if res != 5 {
-		t.Errorf("Invalid offset, expected 5 got %d\n", res)
-	}
-
-	res = IntOffset([]int{5, 7, 9, 17, 25, 31, 1, 3, 4})
-	if res != 6 {
-		t.Errorf("Invalid offset, expected 6 got %d\n", res)
-	}
-
-	res = IntOffset([]int{5, 7, 9, 17, 25, 31, 43, 1, 3, 4})
-	if res != 7 {
-		t.Errorf("Invalid offset, expected 7 got %d\n", res)
+	for _, param := range params {
+		res = IntOffset(param.input)
+		if res != param.expected {
+			t.Errorf("Invalid offset, expected %d got %d\n", param.expected, res)
+		}
 	}
 }
